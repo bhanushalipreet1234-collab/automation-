@@ -1,9 +1,7 @@
 # config.py
 
-GITHUB_TOKEN = "your_github_token_here"
-REPO_NAME = "yourusername/your-repo"
+import streamlit as st
 
-OPENAI_API_KEY = "your_openai_api_key_here"
-
-# Keywords to look for in issues/PRs
+GITHUB_TOKEN = st.secrets["GITHUB_TOKEN"]
+REPO_NAME = st.secrets["REPO_NAME"]
 KEYWORDS = ["bug", "feature", "AI", "help"]

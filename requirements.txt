@@ -2,3 +2,4 @@ openai
 PyGithub
 requests
 schedule
+streamlit

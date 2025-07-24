@@ -2,12 +2,12 @@
 
 from github import Github
 import openai
-from config import GITHUB_TOKEN, REPO_NAME, OPENAI_API_KEY, KEYWORDS
+from config import GITHUB_TOKEN, REPO_NAME, KEYWORDS
 
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 
-openai.api_key = OPENAI_API_KEY
+openai.api_key = "sk-..."  # You can also load this from st.secrets if needed
 
 def label_and_respond_to_issues():
     open_issues = repo.get_issues(state='open')
