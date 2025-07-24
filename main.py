@@ -16,3 +16,15 @@ print("GitHub AI bot running...")
 while True:
     schedule.run_pending()
     time.sleep(10)
+# --- Streamlit UI for GitHub AI Automation Bot ---
+import streamlit as st
+
+st.title("GitHub AI Automation Bot")
+st.write("This app runs GitHub automation tasks using AI.")
+
+if st.button("Run Bot Now"):
+    from actions import label_and_respond_to_issues, close_stale_issues
+    st.write("Running automation...")
+    label_and_respond_to_issues()
+    close_stale_issues()
+    st.success("Tasks complete.")
