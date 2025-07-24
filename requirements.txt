@@ -1,6 +1,6 @@
+streamlit
+streamlit-drawflow
 openai
 PyGithub
 requests
 schedule
-streamlit
-pip install streamlit openai PyGithub streamlit-drawflow
