@@ -1,16 +1,16 @@
-# streamlit_app.py
-
 import streamlit as st
-from actions import label_and_respond_to_issues, close_stale_issues
+from streamlit_drawflow import drawflow
+from modules.ai_node import handle_ai_node
+from modules.github_node import handle_github_issue
+from modules.automation_engine import execute_flow
 
-st.title("🤖 GitHub AI Automation Bot")
-st.write("Run issue labeling, response, and stale issue cleanup.")
+st.set_page_config(page_title="AI Automation Builder", layout="wide")
+st.title("🤖 Visual AI + GitHub Automation Builder")
 
-if st.button("Run Automation Now"):
-    st.info("Running bot...")
-    try:
-        label_and_respond_to_issues()
-        close_stale_issues()
-        st.success("Bot run complete!")
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
+st.markdown("Drag and connect modules to build an automation.")
+
+data = drawflow(key="flow_editor")
+
+if st.button("🚀 Run Automation"):
+    st.success("Executing automation flow...")
+    execute_flow(data)
