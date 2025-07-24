@@ -1,6 +1,6 @@
-streamlit
-streamlit-drawflow
-openai
-PyGithub
-requests
-schedule
+streamlit>=1.34.0
+streamlit-drawflow==0.0.5
+openai>=1.30.0
+PyGithub>=1.59.0
+requests>=2.31.0
+schedule>=1.2.1
