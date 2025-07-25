@@ -1,7 +1,7 @@
 from github import Github
 import os
 
-TOKEN = os.getenv("GITHUB_TOKEN")
+TOKEN = os.getenv("GITHUB_TOKEN") or "your_token_here"
 REPO_NAME = os.getenv("REPO_NAME")
 
 if not TOKEN or not REPO_NAME:
