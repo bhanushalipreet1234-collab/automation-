@@ -1,8 +1,11 @@
 from github import Github
 import os
 
-TOKEN = os.getenv("GITHUB_TOKEN") or "your_token_here"
-REPO_NAME = "your_username/your_repo"
+TOKEN = os.getenv("GITHUB_TOKEN")
+REPO_NAME = os.getenv("REPO_NAME")
+
+if not TOKEN or not REPO_NAME:
+    raise EnvironmentError("Missing required environment variables: GITHUB_TOKEN and/or REPO_NAME")
 
 g = Github(TOKEN)
 repo = g.get_repo(REPO_NAME)
