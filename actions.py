@@ -1,24 +1,22 @@
 from github import Github
-from config import GITHUB_TOKEN, REPO_NAME, KEYWORDS
+import os
 
-g = Github(GITHUB_TOKEN)
+TOKEN = os.getenv("GITHUB_TOKEN") or "your_token_here"
+REPO_NAME = "your_username/your_repo"
+
+g = Github(TOKEN)
 repo = g.get_repo(REPO_NAME)
 
 def label_and_respond_to_issues():
-    issues = repo.get_issues(state="open")
+    issues = repo.get_issues(state='open')
     for issue in issues:
-        for keyword in KEYWORDS:
-            if keyword.lower() in issue.title.lower():
-                issue.add_to_labels(keyword)
-                issue.create_comment(f"🔍 AI detected this as a `{keyword}` issue.")
-                break
+        if not issue.labels:
+            issue.create_comment("Thanks for opening this! We'll triage it shortly.")
+            issue.add_to_labels("triage")
 
-def close_stale_issues(days_stale=30):
-    from datetime import datetime, timedelta
-    issues = repo.get_issues(state="open")
-    cutoff = datetime.utcnow() - timedelta(days=days_stale)
-
+def close_stale_issues():
+    issues = repo.get_issues(state='open')
     for issue in issues:
-        if issue.updated_at < cutoff:
-            issue.create_comment("⏳ This issue has been automatically closed due to inactivity.")
+        if "stale" in [label.name for label in issue.labels]:
+            issue.create_comment("Closing due to inactivity.")
             issue.edit(state="closed")
