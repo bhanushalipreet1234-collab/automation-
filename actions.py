@@ -5,7 +5,7 @@ TOKEN = os.getenv("GITHUB_TOKEN")
 if not TOKEN:
     raise EnvironmentError("Missing GITHUB_TOKEN environment variable")
 
-REPO_NAME = "your_username/your_repo"
+REPO_NAME = "bhanushalipreet1234-collab/automation-"
 
 g = Github(TOKEN)
 repo = g.get_repo(REPO_NAME)
